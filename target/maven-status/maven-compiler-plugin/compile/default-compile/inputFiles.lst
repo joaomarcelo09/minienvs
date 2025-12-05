@@ -1,0 +1,6 @@
+/home/joaogomes/font/my-projects/minienv/src/main/java/jgproject/minienv/MinienvApplication.java
+/home/joaogomes/font/my-projects/minienv/src/main/java/jgproject/minienv/env_variables/EnvVariables.java
+/home/joaogomes/font/my-projects/minienv/src/main/java/jgproject/minienv/env_variables/EnvVariablesController.java
+/home/joaogomes/font/my-projects/minienv/src/main/java/jgproject/minienv/env_variables/EnvVariablesRepository.java
+/home/joaogomes/font/my-projects/minienv/src/main/java/jgproject/minienv/env_variables/EnvVariablesService.java
+/home/joaogomes/font/my-projects/minienv/src/main/java/jgproject/minienv/security/SecurityConfig.java
