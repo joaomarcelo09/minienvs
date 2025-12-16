@@ -3,6 +3,8 @@ package jgproject.minienv.env_variables;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,5 +61,16 @@ public class EnvVariablesController {
 		envVariablesService.delete(id_env);
 
 		return ResponseEntity.ok("Deleted successfully");
+	}
+
+	@GetMapping("/download")
+	public ResponseEntity<byte[]> downloadEnv(@RequestParam String project_name) {
+
+		byte[] env_byte = envVariablesService.downloadEnv(project_name);
+
+		return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=.env")
+            .contentType(MediaType.TEXT_PLAIN)
+            .body(env_byte);
 	}
 }

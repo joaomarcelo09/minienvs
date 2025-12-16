@@ -1,7 +1,7 @@
 package jgproject.minienv.env_variables;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class EnvVariablesService {
 
 		EnvVariables newEnv = new EnvVariables();
 
-		newEnv.setProject_name(body.project_name());
+		newEnv.setProjectName(body.project_name());
 		newEnv.setKey(body.key());
 		newEnv.setValue(body.value());
 
@@ -30,7 +30,7 @@ public class EnvVariablesService {
 
 		EnvVariables env = envVariablesRepository.findById(id_env).orElseThrow();
 
-		env.setProject_name(body.project_name());
+		env.setProjectName(body.project_name());
 		env.setKey(body.key());
 		env.setKey(body.value());
 
@@ -49,6 +49,22 @@ public class EnvVariablesService {
 
 	public List<EnvVariables> findAll() {
 		return envVariablesRepository.findAll();
+	}
+
+	public byte[] downloadEnv(String project_name) {
+
+		List<EnvVariables> envs = envVariablesRepository.findAllByProjectName(project_name);
+
+		StringBuilder env_string = new StringBuilder();
+
+		for (EnvVariables env : envs) {
+			env_string.append(env.getKey())
+                   .append("=")
+                   .append(env.getValue())
+                   .append("\n");
+		}
+
+		return env_string.toString().getBytes(StandardCharsets.UTF_8);
 	}
 
 }
